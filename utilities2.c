@@ -137,5 +137,6 @@ int	run(int key, void *param)
 		return (0);
 	ft_putnbr(mp->go);
 	write(1, "\n", 1);
+	player_to_cent(mp);
 	return (0);
 }

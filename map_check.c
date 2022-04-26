@@ -6,7 +6,7 @@
 /*   By: pwildcat <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/06 18:17:25 by pwildcat          #+#    #+#             */
-/*   Updated: 2022/03/06 18:17:27 by pwildcat         ###   ########.fr       */
+/*   Updated: 2022/04/15 16:06:24 by pwildcat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,7 @@ int	all_check(char **line)
 void	map_inic(t_mapMV *mp, char **line)
 {
 	mp->mlx = mlx_init();
-	mp->window = mlx_new_window(mp->mlx, 1080, 1024, "so_long");
+	mp->window = mlx_new_window(mp->mlx, 16 * 32, 16 * 32, "so_long");
 	mp->h = 32;
 	mp->go = 0;
 	mp->imgback = mlx_png_file_to_image(mp->mlx, "Blue.png", &mp->h, &mp->h);
@@ -54,27 +54,18 @@ void	map_inic(t_mapMV *mp, char **line)
 	mp->imgc = mlx_png_file_to_image(mp->mlx, "Apple.png", &mp->h, &mp->h);
 }
 
-int	map_picture(char **line, t_mapMV *mp)
+void	paint_sprite(t_mapMV *mp, t_pplayer *pp)
 {
-	mp->i = 0;
-	while (line[mp->i] != NULL)
-	{
-		mp->j = 0;
-		while (line[mp->i][mp->j] != '\n')
-		{
-			if (line[mp->i][mp->j] == '1')
-				image_to(mp, mp->imgs, mp->i, mp->j);
-			else if (line[mp->i][mp->j] == '0' || line[mp->i][mp->j] == 'P')
-				image_to(mp, mp->imgback, mp->i, mp->j);
-			else if (line[mp->i][mp->j] == 'E')
-				image_to(mp, mp->imge, mp->i, mp->j);
-			else if (line[mp->i][mp->j] == 'C')
-				image_to(mp, mp->imgc, mp->i, mp->j);
-			mp->j++;
-		}
-		mp->i++;
-	}
-	return (0);
+	if (mp->line[pp->y][pp->x] == '1')
+		image_to(mp, mp->imgs, pp->i, pp->j);
+	else if (mp->line[pp->y][pp->x] == '0')
+		image_to(mp, mp->imgback, pp->i, pp->j);
+	else if (mp->line[pp->y][pp->x] == 'P')
+		image_to(mp, mp->img, pp->i, pp->j);
+	else if (mp->line[pp->y][pp->x] == 'E')
+		image_to(mp, mp->imge, pp->i, pp->j);
+	else if (mp->line[pp->y][pp->x] == 'C')
+		image_to(mp, mp->imgc, pp->i, pp->j);
 }
 
 int	all_actions(char **line, t_mapMV *mp)

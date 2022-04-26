@@ -39,6 +39,14 @@ typedef struct s_mapMoves
 	int		go;
 }	t_mapMV;
 
+typedef struct s_pplayer
+{
+	int		x;
+	int		y;
+	int		i;
+	int		j;
+}	t_pplayer;
+
 void	map_free(char **line);
 void	tmp_return(char **tmp, char **line, int j);
 int		check_first_or_last(char **line, int i, int flag);
@@ -59,5 +67,16 @@ void	map_inic(t_mapMV *mp, char **line);
 void	image_to(t_mapMV *mp, void	*name, int i, int j);
 int		full_clear(t_mapMV *mp);
 void	ft_putnbr(int n);
-
+int		max_in_line(t_mapMV *mp);
+int		max_in_s(t_mapMV *mp);
+void	paint_sprite(t_mapMV *mp, t_pplayer *pp);
+void	player_to_cent(t_mapMV *mp);
+int		x_min(t_mapMV *mp);
+int		y_min(t_mapMV *mp);
+int		x_max(t_mapMV *mp);
+int		y_max(t_mapMV *mp);
+int		ft_countmemory(char const *s, unsigned int start, size_t len);
+char	*ft_substr(char const *s, unsigned int start, size_t len);
+void	v_checker(char *str);
+int		ft_strncmp(const char *s1, const char *s2, size_t n);
 #endif

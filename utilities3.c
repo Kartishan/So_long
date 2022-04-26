@@ -26,10 +26,9 @@ void	move_right(char **line, t_mapMV *mp)
 		{
 			if (line[mp->y][mp->x + 1] == 'E' && mp->c == 0)
 				full_clear(mp);
-			image_to(mp, mp->imgback, mp->y, mp->x);
-			image_to(mp, mp->img, mp->y, mp->x + 1);
 			line[mp->y][mp->x] = '0';
 			mp->x = mp->x + 1;
+			line[mp->y][mp->x] = 'P';
 			mp->go++;
 		}
 	}
@@ -49,10 +48,9 @@ void	move_left(char **line, t_mapMV *mp)
 		{
 			if (line[mp->y][mp->x - 1] == 'E' && mp->c == 0)
 				full_clear(mp);
-			image_to(mp, mp->imgback, mp->y, mp->x);
-			image_to(mp, mp->img, mp->y, mp->x - 1);
 			line[mp->y][mp->x] = '0';
 			mp->x = mp->x - 1;
+			line[mp->y][mp->x] = 'P';
 			mp->go++;
 		}
 	}
@@ -72,10 +70,9 @@ void	move_up(char **line, t_mapMV *mp)
 		{
 			if (line[mp->y - 1][mp->x] == 'E')
 				full_clear(mp);
-			image_to(mp, mp->imgback, mp->y, mp->x);
-			image_to(mp, mp->img, mp->y - 1, mp->x);
 			line[mp->y][mp->x] = '0';
 			mp->y = mp->y - 1;
+			line[mp->y][mp->x] = 'P';
 			mp->go++;
 		}
 	}
@@ -95,10 +92,9 @@ void	move_down(char **line, t_mapMV *mp)
 		{
 			if (line[mp->y + 1][mp->x] == 'E')
 				full_clear(mp);
-			image_to(mp, mp->imgback, mp->y, mp->x);
-			image_to(mp, mp->img, mp->y + 1, mp->x);
 			line[mp->y][mp->x] = '0';
 			mp->y = mp->y + 1;
+			line[mp->y][mp->x] = 'P';
 			mp->go++;
 		}
 	}

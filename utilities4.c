@@ -35,7 +35,6 @@ void	player_search(char **line, t_mapMV *mp)
 			{
 				mp->x = mp->j;
 				mp->y = mp->i;
-				image_to(mp, mp->img, mp->i, mp->j);
 				flag = 1;
 			}
 			else if (line[mp->i][mp->j] == 'C')
